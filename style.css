@@ -167,6 +167,10 @@ nav,
 .dark-theme #personal-logo {
   filter: brightness(0) invert(1);
 }
+
+.dark-theme .footer__logo--img {
+  filter: brightness(0) invert(1);
+}
 .dark-theme .scroll__icon {
   border-color: white;
 }
