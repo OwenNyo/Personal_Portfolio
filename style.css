@@ -168,7 +168,7 @@ nav,
   filter: brightness(0) invert(1);
 }
 
-.dark-theme .footer__logo--img {
+.dark-theme #footer-img {
   filter: brightness(0) invert(1);
 }
 .dark-theme .scroll__icon {
