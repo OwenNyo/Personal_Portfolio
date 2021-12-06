@@ -164,13 +164,11 @@ nav,
   background-color: #242424;
 }
 
-.dark-theme #personal-logo {
-  filter: brightness(0) invert(1);
-}
-
+.dark-theme #personal-logo,
 .dark-theme #footer-img {
   filter: brightness(0) invert(1);
 }
+
 .dark-theme .scroll__icon {
   border-color: white;
 }
