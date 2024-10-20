@@ -7,7 +7,6 @@ This is a personal portfolio website for **Owen Nyo**, a software engineer passi
 - **About Me**: Introduces Owen Nyo, a Singaporean software developer skilled in **React**, **JavaScript**, **Python**, and more.
 - **Projects Section**: Highlights several major projects, such as:
   - **Google In-Store**: A platform for Google retail employees to report store issues.
-  - **Genshin Impact API**: A minimalist web application to discover characters from the popular game.
   - **Library**: A book-browsing and purchasing platform.
 - **Contact Form**: Allows users to easily get in touch with Owen for collaboration or job opportunities.
   
