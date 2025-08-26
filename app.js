@@ -18,25 +18,29 @@ function moveBackground(event) {
 
 function contact(event) {
   event.preventDefault();
+
+  const form = event.target;
   const loading = document.querySelector(".modal__overlay--loading");
   const success = document.querySelector(".modal__overlay--success");
-  loading.classList += " modal__overlay--visible";
+  
+  loading.classList.add("modal__overlay--visible");
+
   emailjs
-    .sendForm(
-      "service_2m49u12",
-      "template_jend7ir",
-      event.target,
-      "user_PI90cCavFszPZE0ot00mM"
-    )
+    .sendForm("service_2m49u12", "template_jend7ir", form)
     .then(() => {
       loading.classList.remove("modal__overlay--visible");
-      success.classList += " modal__overlay--visible";
+      success.classList.add("modal__overlay--visible");
+
+      form.reset();
+      setTimeout(() => {
+        success.classList.remove("modal__overlay--visible");
+        document.body.classList.remove("modal--open");
+      }, 3500);
     })
-    .catch(() => {
+    .catch((err) => {
+      console.error("EmailJS error:", err);
       loading.classList.remove("modal__overlay--visible");
-      alert(
-        "The email service is temporarily unavailable. Please contact me directly on owennyowy@gmail.com"
-      );
+      alert("The email service is temporarily unavailable. Please contact me directly at owennyowy@gmail.com");
     });
 }
 

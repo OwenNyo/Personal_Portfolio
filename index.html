@@ -5,16 +5,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Owen Nyo</title>
+
     <link rel="stylesheet" href="style.css" />
-    <script src="https://kit.fontawesome.com/c8e4d183c2.js" crossorigin="anonymous"></script>
-    <script src="app.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-    <script type="text/javascript">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <script src="app.js" defer></script>
+
+    <!-- EmailJS -->
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+    <script>
       (function () {
         emailjs.init("user_PI90cCavFszPZE0ot00mM");
       })();
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   </head>
   <body>
     <section id="landing-page" onmousemove="moveBackground(event)">
@@ -24,184 +30,140 @@
         </figure>
         <ul class="nav__link--list">
           <li class="nav__link">
-            <a
-              href="#"
-              class="
-                nav__link--anchor
-                link__hover-effect link__hover-effect--black
-              "
-              >About</a
-            >
+            <a href="#" class="nav__link--anchor link__hover-effect link__hover-effect--black">About</a>
           </li>
           <li class="nav__link">
-            <a
-              href="#projects"
-              class="
-                nav__link--anchor
-                link__hover-effect link__hover-effect--black
-              "
-              >Projects</a
-            >
+            <a href="#projects" class="nav__link--anchor link__hover-effect link__hover-effect--black">Projects</a>
           </li>
           <li class="nav__link">
-            <a
-              href="#"
-              class="
-                nav__link--anchor
-                link__hover-effect link__hover-effect--black
-              "
-              onclick="toggleModal()"
-              >Contact</a
-            >
+            <a href="#" class="nav__link--anchor link__hover-effect link__hover-effect--black" onclick="toggleModal()">Contact</a>
           </li>
           <li class="nav__link">
-            <a
-              href="#"
-              class="
-                nav__link--anchor
-                link__hover-effect link__hover-effect--black
-              "
-              onclick="toggleContrast()"
-              ><i class="fas fa-adjust"></i
-            ></a>
+            <a href="#" class="nav__link--anchor link__hover-effect link__hover-effect--black" onclick="toggleContrast()">
+              <i class="fa-solid fa-circle-half-stroke"></i>
+            </a>
           </li>
         </ul>
       </nav>
+
       <header class="header">
         <div class="header__content">
           <h1 class="title">Hey</h1>
           <h1 class="title blue">I'm Owen.</h1>
           <p class="header__para">
-            I'm a <b class="blue">Software Engineer</b> with a strong
-            passion for building web applications with great user
+            I'm a <b class="blue">Software Engineer</b> with a strong passion for building web applications with great user
             experiences.<br />
             Here's a bit more <b class="blue click" onclick="toggleModal()">about me</b>.
           </p>
           <div class="social__list">
             <a href="#" class="social__link click">
-              <i class="fab fa-linkedin-in"></i>
+              <i class="fa-brands fa-linkedin-in"></i>
             </a>
             <a href="#" class="social__link click">
-              <i class="fab fa-github"></i>
+              <i class="fa-brands fa-github"></i>
             </a>
             <a href="#" target="_blank" class="social__link click">
-              <i class="fas fa-file-pdf"></i>
+              <i class="fa-solid fa-file-pdf"></i>
             </a>
           </div>
         </div>
       </header>
+
       <button class="mail__btn click" onclick="toggleModal()">
-        <i class="fas fa-envelope" aria-hidden="true"></i>
+        <i class="fa-solid fa-envelope" aria-hidden="true"></i>
       </button>
-      <!-- Testing Area-->
-      <!-- End of Phase lab-->
+
       <a href="#projects" class="scroll">
         <div class="scroll__icon click"></div>
       </a>
 
-
       <div class="modal">
-            <div class="modal__half modal__about">
-              <h3 class="modal__title modal__title--about">Here's a bit about me.</h3>
-              <h4 class="modal__sub-title modal__sub-title--about">Frontend Software Engineer.</h4>
-              <p class="modal__para">
-                I'm a 22 year-old Singaporean <b class="blue">software developer</b> who has worked on
-                side projects like <b class="blue">E-Portfolio</b> and <b class="blue">Task Tracker</b>.
-                <br>
-                I am currently studying at Singapore Institute of Technology, learning </b><b class="blue">React</b> and <b class="blue">Python</b> 
-                in my free time!
-              </p>
+        <div class="modal__half modal__about">
+          <h3 class="modal__title modal__title--about">Here's a bit about me.</h3>
+          <h4 class="modal__sub-title modal__sub-title--about">Frontend Software Engineer.</h4>
+          <p class="modal__para">
+            I'm a 22 year-old Singaporean <b class="blue">software developer</b> who has worked on side projects like
+            <b class="blue">E-Portfolio</b> and <b class="blue">Task Tracker</b>.
+            <br />
+            I am currently studying at Singapore Institute of Technology, learning <b class="blue">React</b> and
+            <b class="blue">Python</b> in my free time!
+          </p>
 
-            <div class="modal__languages">
-                <figure class="modal__language">
-                <img class="modal__language--img"
-                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/HTML5_Badge.svg/240px-HTML5_Badge.svg.png"
-                    alt="">
-                <span class="language__name">HTML</span>
-                </figure>
-                <figure class="modal__language">
-                <img class="modal__language--img" src="https://cdn.iconscout.com/icon/free/png-256/css-131-722685.png"
-                    alt="">
-                <span class="language__name">CSS</span>
-                </figure>
-                <figure class="modal__language">
-                <img class="modal__language--img" src="https://cdn.iconscout.com/icon/free/png-256/javascript-1-225993.png"
-                    alt="">
-                <span class="language__name">JavaScript</span>
-                </figure>
-                <figure class="modal__language">
-                    <img class="modal__language--img" src="https://cdn.iconscout.com/icon/free/png-256/react-3-1175109.png"
-                    alt="">
-                    <span class="language__name">React</span>
-                </figure>
-                <figure class="modal__language">
-                  <img class="modal__language--img" src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg"
-                      alt="">                  
-                    <span class="language__name">Python</span>
-                </figure>
-                <figure class="modal__language">
-                  <img class="modal__language--img" src="https://upload.wikimedia.org/wikipedia/commons/1/19/C_Logo.png"
-                      alt="">
-                  <span class="language__name">C</span>
-                </figure>
-                <figure class="modal__language">
-                  <img class="modal__language--img" src="https://upload.wikimedia.org/wikipedia/commons/0/0d/C_Sharp_wordmark.svg"
-                      alt="">
-                  <span class="language__name">C#</span>
-                </figure>
-                <figure class="modal__language">
-                      <img class="modal__language--img" src="https://upload.wikimedia.org/wikipedia/commons/7/7b/MySQL_Dolphin.jpg"
-                      alt="">
-                      <span class="language__name">MySQL DB</span>
-                </figure>
-            </div>
-            </div>
-
-            <div class="modal__half modal__contact">
-            <i class="fas fa-times modal__exit click" onclick="toggleModal();"></i>
-            <h3 class="modal__title modal__title--contact">
-                Let's have a chat!
-            </h3>
-            <h3 class="modal__sub-title modal__sub-title--contact">
-                I'm currently open to new opportunities.
-            </h3>
-            <form id="contact__form" onsubmit="contact(event)">
-                <div class="form__item">
-                <label class="form__item--label">Name</label>
-                <input class="input" name="user_name" type="text" placeholder= "John Doe"required></input>
-                </div>
-                <div class="form__item">
-                <label class="form__item--label">Email</label>
-                <input class="input" name="user_email" type="email" placeholder="John@rocketmail.com" required></input>
-                </div>
-                <div class="form__item">
-                <label class="form__item--label">Message</label>
-                <textarea class="input" name="user_message" type="text" placeholder="Drop me a message here!"required></textarea>
-                </div>
-                <button id="contact__submit" class="form__submit">
-                Send it my way
-                </button>
-            </form>
-            <div class="modal__overlay modal__overlay--loading">
-                <i class="fas fa-spinner"></i>
-            </div>
-            <div class="modal__overlay modal__overlay--success">
-                Thanks for the message! Looking forward to speaking to you soon.
-            </div>
-            </div>
+          <div class="modal__languages">
+            <figure class="modal__language">
+              <img class="modal__language--img"
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/HTML5_Badge.svg/240px-HTML5_Badge.svg.png" alt="">
+              <span class="language__name">HTML</span>
+            </figure>
+            <figure class="modal__language">
+              <img class="modal__language--img" src="https://cdn.iconscout.com/icon/free/png-256/css-131-722685.png" alt="">
+              <span class="language__name">CSS</span>
+            </figure>
+            <figure class="modal__language">
+              <img class="modal__language--img" src="https://cdn.iconscout.com/icon/free/png-256/javascript-1-225993.png" alt="">
+              <span class="language__name">JavaScript</span>
+            </figure>
+            <figure class="modal__language">
+              <img class="modal__language--img" src="https://cdn.iconscout.com/icon/free/png-256/react-3-1175109.png" alt="">
+              <span class="language__name">React</span>
+            </figure>
+            <figure class="modal__language">
+              <img class="modal__language--img" src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" alt="">
+              <span class="language__name">Python</span>
+            </figure>
+            <figure class="modal__language">
+              <img class="modal__language--img" src="https://upload.wikimedia.org/wikipedia/commons/1/19/C_Logo.png" alt="">
+              <span class="language__name">C</span>
+            </figure>
+            <figure class="modal__language">
+              <img class="modal__language--img" src="https://upload.wikimedia.org/wikipedia/commons/0/0d/C_Sharp_wordmark.svg" alt="">
+              <span class="language__name">C#</span>
+            </figure>
+            <figure class="modal__language">
+              <img class="modal__language--img" src="https://upload.wikimedia.org/wikipedia/commons/7/7b/MySQL_Dolphin.jpg" alt="">
+              <span class="language__name">MySQL DB</span>
+            </figure>
+          </div>
         </div>
-    </div>
-    <img src="./assets/semi circle.svg" class="shape shape--0">
-    <img src="./assets/circle.svg" class="shape shape--1">
-    <img src="./assets/squiggly.svg" class="shape shape--2">
-    <img src="./assets/circle.svg" class="shape shape--3">
-    <img src="./assets/triangle.svg" class="shape shape--4">
-    <img src="./assets/circle.svg" class="shape shape--5">
-    <img src="./assets/squiggly.svg" class="shape shape--6">
-    <img src="./assets/circle.svg" class="shape shape--7">
-    <img src="./assets/semi circle.svg" class="shape shape--8">
-  </section>
 
+        <div class="modal__half modal__contact">
+          <i class="fa-solid fa-xmark modal__exit click" onclick="toggleModal();"></i>
+          <h3 class="modal__title modal__title--contact">Let's have a chat!</h3>
+          <h3 class="modal__sub-title modal__sub-title--contact">I'm currently open to new opportunities.</h3>
+          <form id="contact__form" onsubmit="contact(event)">
+            <div class="form__item">
+              <label class="form__item--label">Name</label>
+              <input class="input" name="user_name" type="text" placeholder="John Doe" required />
+            </div>
+            <div class="form__item">
+              <label class="form__item--label">Email</label>
+              <input class="input" name="user_email" type="email" placeholder="John@rocketmail.com" required />
+            </div>
+            <div class="form__item">
+              <label class="form__item--label">Message</label>
+              <textarea class="input" name="user_message" placeholder="Drop me a message here!" required></textarea>
+            </div>
+            <button id="contact__submit" class="form__submit">Send it my way</button>
+          </form>
+          <div class="modal__overlay modal__overlay--loading">
+            <i class="fa-solid fa-spinner fa-spin"></i>
+          </div>
+          <div class="modal__overlay modal__overlay--success">
+            Thanks for the message! Looking forward to speaking to you soon.
+          </div>
+        </div>
+      </div>
+
+      <img src="./assets/semi circle.svg" class="shape shape--0" />
+      <img src="./assets/circle.svg" class="shape shape--1" />
+      <img src="./assets/squiggly.svg" class="shape shape--2" />
+      <img src="./assets/circle.svg" class="shape shape--3" />
+      <img src="./assets/triangle.svg" class="shape shape--4" />
+      <img src="./assets/circle.svg" class="shape shape--5" />
+      <img src="./assets/squiggly.svg" class="shape shape--6" />
+      <img src="./assets/circle.svg" class="shape shape--7" />
+      <img src="./assets/semi circle.svg" class="shape shape--8" />
+    </section>
 
     <section id="projects">
       <div class="container">
@@ -213,31 +175,23 @@
             <!-- Project 1 -->
             <li class="project">
               <div class="project__wrapper">
-                <img
-                  src="./assets/google mockup.png"
-                  class="project__img"
-                  alt=""
-                />
+                <img src="./assets/google mockup.png" class="project__img" alt="" />
                 <div class="project__wrapper--bg"></div>
                 <div class="project__description">
                   <h3 class="project__description--title">Google In-Store</h3>
-                  <h4 class="project__description--sub-title">
-                    Html, CSS, JavaScript, Vue, Vuex
-                  </h4>
+                  <h4 class="project__description--sub-title">Html, CSS, JavaScript, Vue, Vuex</h4>
                   <p class="project__description--para">
-                    Google In-Store is a platform allowing Google retail
-                    employees to report any issues with their store products.
-                    Once an issue is reported, it is posted to an API which
-                    populates a separate platform's frontend - which is used by
-                    Google's vendors to fix the issue as soon as possible. I was
-                    the sole front-end developer of this application.
+                    Google In-Store is a platform allowing Google retail employees to report any issues with their store
+                    products. Once an issue is reported, it is posted to an API which populates a separate platform's
+                    frontend - which is used by Google's vendors to fix the issue as soon as possible. I was the sole
+                    front-end developer of this application.
                   </p>
                   <div class="project__description--links">
                     <a href="" class="project__description--link">
-                      <i class="fab fa-github"></i>
+                      <i class="fa-brands fa-github"></i>
                     </a>
                     <a href="https://googleinstore.com.au/" class="project__description--link">
-                      <i class="fas fa-link"></i>
+                      <i class="fa-solid fa-link"></i>
                     </a>
                   </div>
                 </div>
@@ -247,26 +201,21 @@
             <!-- Project 2 -->
             <li class="project">
               <div class="project__wrapper">
-                <img
-                  src="./assets/Genshin.jpg"
-                  class="project__img"
-                  alt=""
-                />
+                <img src="./assets/Genshin.jpg" class="project__img" alt="" />
                 <div class="project__wrapper--bg"></div>
                 <div class="project__description">
                   <h3 class="project__description--title">Genshin Impact API</h3>
-                  <h4 class="project__description--sub-title">
-                    Html, CSS, JavaScript
-                  </h4>
+                  <h4 class="project__description--sub-title">Html, CSS, JavaScript</h4>
                   <p class="project__description--para">
-                    Genshin Impact allows you to search and discover favourite character from a Game developed by MihoyoLabs. It is made using multiple API calls and a minimalistic design.
+                    Genshin Impact allows you to search and discover favourite character from a Game developed by
+                    MihoyoLabs. It is made using multiple API calls and a minimalistic design.
                   </p>
                   <div class="project__description--links">
                     <a href="" class="project__description--link">
-                      <i class="fab fa-github"></i>
+                      <i class="fa-brands fa-github"></i>
                     </a>
                     <a href="https://owennyo.github.io/Genshin_Impact/" class="project__description--link">
-                      <i class="fas fa-link"></i>
+                      <i class="fa-solid fa-link"></i>
                     </a>
                   </div>
                 </div>
@@ -276,26 +225,21 @@
             <!-- Project 3 -->
             <li class="project">
               <div class="project__wrapper">
-                <img
-                  src="./assets/Library.jpg"
-                  class="project__img"
-                  alt=""
-                />
+                <img src="./assets/Library.jpg" class="project__img" alt="" />
                 <div class="project__wrapper--bg"></div>
                 <div class="project__description">
                   <h3 class="project__description--title">Library</h3>
-                  <h4 class="project__description--sub-title">
-                    Html, CSS, JavaScript
-                  </h4>
+                  <h4 class="project__description--sub-title">Html, CSS, JavaScript</h4>
                   <p class="project__description--para">
-                    Library is a platform allowing users to browse any books or purchase any books of their choice. They can filter and view different books according to price and review with the help of javascript.
+                    Library is a platform allowing users to browse any books or purchase any books of their choice. They
+                    can filter and view different books according to price and review with the help of javascript.
                   </p>
                   <div class="project__description--links">
                     <a href="" class="project__description--link">
-                      <i class="fab fa-github"></i>
+                      <i class="fa-brands fa-github"></i>
                     </a>
                     <a href="https://owennyo.github.io/Library/" class="project__description--link">
-                      <i class="fas fa-link"></i>
+                      <i class="fa-solid fa-link"></i>
                     </a>
                   </div>
                 </div>
@@ -305,49 +249,37 @@
         </div>
       </div>
     </section>
-    <!-- End of Projects -->
 
-
-    <!-- Footer -->
     <footer>
       <div class="container">
         <div class="row footer__row">
           <a href="#" class="footer__anchor">
             <figure class="footer__logo">
-              <img class="footer__logo--img" id="footer-img"  src="./assets/Polygon_logo.png" alt="">
+              <img class="footer__logo--img" id="footer-img" src="./assets/Polygon_logo.png" alt="" />
             </figure>
             <span class="footer__logo--popper">
               Top
-              <i class="fas fa-arrow-up" aria-hidden="true"></i>
+              <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
             </span>
           </a>
           <div class="footer__social--list">
-            <a href="https://github.com/OwenNyo" class="
-            footer__social--link
-            link__hover-effect
-            link__hover-effect--white
-          ">
+            <a
+              href="https://github.com/OwenNyo"
+              class="footer__social--link link__hover-effect link__hover-effect--white"
+            >
               GitHub
             </a>
-            <a href="https://www.linkedin.com/in/owen-nyo/" target="_blank" class="
-            footer__social--link
-            link__hover-effect
-            link__hover-effect--white
-          ">
+            <a
+              href="https://www.linkedin.com/in/owen-nyo/"
+              target="_blank"
+              class="footer__social--link link__hover-effect link__hover-effect--white"
+            >
               LinkedIn
             </a>
-            <a href="#" onclick="toggleModal()" class="
-            footer__social--link
-            link__hover-effect
-            link__hover-effect--white
-          ">
+            <a href="#" onclick="toggleModal()" class="footer__social--link link__hover-effect link__hover-effect--white">
               Contact
             </a>
-            <a href="#" target="_blank" class="
-            footer__social--link
-            link__hover-effect
-            link__hover-effect--white
-          ">
+            <a href="#" target="_blank" class="footer__social--link link__hover-effect link__hover-effect--white">
               Resume
             </a>
           </div>
@@ -356,5 +288,4 @@
       </div>
     </footer>
   </body>
-  <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
 </html>
