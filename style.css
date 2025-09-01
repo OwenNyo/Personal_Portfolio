@@ -510,6 +510,8 @@ nav {
 
 .project__img {
   width: 100%;
+  height: 450px;      /* set a standard height */
+  object-fit: cover;
   transition: all 600ms ease;
 }
 
