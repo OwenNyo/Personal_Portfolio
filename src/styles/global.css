@@ -1,0 +1,175 @@
+:root {
+  --cream: #f6e7d3;
+  --sand: #e9cfae;
+  --latte: #d9b58a;
+  --terracotta: #c8643c;
+  --wood: #7a4b2a;
+  --dusk: #6b3f26;
+  --espresso: #4a2c1c;
+  --amber: #e0a94a;
+  --roast: #1c1310;
+  --paper: #fbf6ee;
+  --chalk: #2f3a33;
+
+  --step-0: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+  --step-1: clamp(1.25rem, 1.1rem + 0.75vw, 1.75rem);
+  --step-2: clamp(1.75rem, 1.4rem + 1.75vw, 3rem);
+  --step-3: clamp(2.5rem, 1.8rem + 3.5vw, 5rem);
+
+  --gutter: clamp(1rem, 4vw, 3rem);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body), system-ui, sans-serif;
+  font-size: var(--step-0);
+  line-height: 1.55;
+  color: var(--espresso);
+  background: var(--cream);
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display), Georgia, serif;
+  line-height: 1.1;
+  margin: 0;
+}
+
+a {
+  color: inherit;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+.scene {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100svh;
+  padding: var(--gutter);
+  display: grid;
+  align-content: center;
+  overflow: hidden;
+}
+
+.scene__inner {
+  width: min(100%, 72rem);
+  margin-inline: auto;
+}
+
+.scene--dark {
+  color: var(--paper);
+}
+
+[data-scene='door'] {
+  background: var(--cream);
+}
+[data-scene='counter'] {
+  background: var(--sand);
+}
+[data-scene='roasts'] {
+  background: var(--latte);
+}
+[data-scene='menu'] {
+  background: var(--dusk);
+}
+[data-scene='table'] {
+  background: var(--roast);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* Paper grain over everything; low opacity so it reads as texture, not noise. */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  pointer-events: none;
+  opacity: 0.07;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.3 0 0 0 0 0.2 0 0 0 0 0.1 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Coffee ring stain. Position and size per use. */
+.ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 3px solid currentColor;
+  opacity: 0.12;
+  pointer-events: none;
+}
+
+.ring::after {
+  content: '';
+  position: absolute;
+  inset: 4px;
+  border-radius: 50%;
+  border: 1px solid currentColor;
+}
+
+@keyframes drift {
+  from { transform: translateX(-6%); }
+  to { transform: translateX(6%); }
+}
+
+@keyframes steam-loop {
+  0% { transform: translateY(0); opacity: 0.9; }
+  100% { transform: translateY(-8px); opacity: 0.3; }
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.35; }
+  50% { opacity: 1; }
+}
+
+@keyframes flicker {
+  0%, 100% { transform: scale(1) translateY(0); }
+  30% { transform: scale(0.92, 1.08) translateY(-1px); }
+  60% { transform: scale(1.06, 0.94) translateY(1px); }
+}
+
+@keyframes sway {
+  0%, 100% { transform: rotate(0deg); }
+  30% { transform: rotate(2deg); }
+  70% { transform: rotate(-1.5deg); }
+}
+
+.cloud { animation: drift 14s ease-in-out infinite alternate; }
+.steam-loop { animation: steam-loop 2.4s ease-in-out infinite alternate; }
+.star { animation: twinkle 3s ease-in-out infinite; }
+.flame { transform-box: fill-box; transform-origin: bottom center; animation: flicker 0.9s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .cloud,
+  .steam-loop,
+  .star,
+  .flame {
+    animation: none;
+  }
+}
