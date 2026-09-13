@@ -1,0 +1,89 @@
+---
+const links = [
+  { href: '#counter', label: 'Counter' },
+  { href: '#roasts', label: 'Roasts' },
+  { href: '#menu', label: 'Menu' },
+  { href: '#table', label: 'Your table' },
+];
+---
+
+<nav class="nav" aria-label="Jump to a part of the cafe">
+  <span class="nav__chain" aria-hidden="true"></span>
+  <ul class="nav__list">
+    {links.map((link) => <li><a class="nav__link" href={link.href}>{link.label}</a></li>)}
+  </ul>
+</nav>
+
+<style>
+  .nav {
+    position: fixed;
+    top: 0;
+    right: var(--gutter);
+    z-index: 10;
+    display: grid;
+    justify-items: center;
+  }
+
+  .nav__chain {
+    width: 2px;
+    height: 1.25rem;
+    background: var(--espresso);
+  }
+
+  .nav__list {
+    list-style: none;
+    margin: 0;
+    padding: 0.5rem 0.75rem;
+    display: flex;
+    gap: 1rem;
+    background: var(--paper);
+    color: var(--espresso);
+    border: 3px solid var(--espresso);
+    border-radius: 0.5rem;
+    box-shadow: 0 6px 16px rgb(0 0 0 / 0.2);
+    font-size: 0.9em;
+    font-weight: 600;
+  }
+
+  .nav__link {
+    text-decoration: none;
+    padding: 0.25rem 0.25rem;
+  }
+
+  .nav__link:hover {
+    text-decoration: underline;
+  }
+
+  .nav {
+    transform-origin: top center;
+  }
+
+  .nav:hover {
+    animation: sway 1.4s ease-in-out;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .nav:hover {
+      animation: none;
+    }
+  }
+
+  .nav__link:focus-visible {
+    outline: 3px solid var(--amber);
+    outline-offset: 2px;
+  }
+
+  @media (max-width: 767px) {
+    .nav {
+      right: 50%;
+      transform: translateX(50%);
+    }
+
+    .nav__list {
+      gap: 0.6rem;
+      padding: 0.35rem 0.6rem;
+      font-size: 0.8em;
+      white-space: nowrap;
+    }
+  }
+</style>
