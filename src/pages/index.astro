@@ -1,0 +1,24 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import Door from '../components/scenes/Door.astro';
+import Counter from '../components/scenes/Counter.astro';
+import Roasts from '../components/scenes/Roasts.astro';
+import MenuWall from '../components/scenes/MenuWall.astro';
+import Table from '../components/scenes/Table.astro';
+---
+
+<Base title="Owen Nyo" description="Owen Nyo, software engineer. A small cafe of projects.">
+  <Nav />
+  <main>
+    <Door />
+    <Counter />
+    <Roasts />
+    <MenuWall />
+    <Table />
+  </main>
+</Base>
+
+<script src="../scripts/cards.ts"></script>
+
+<script src="../scripts/motion.ts"></script>
