@@ -1,32 +1,24 @@
-# 💼 Owen Nyo's Personal Portfolio
+# Owen Nyo, personal portfolio
 
-## 🌟 Overview
-This is a personal portfolio website for **Owen Nyo**, a software engineer passionate about building web applications with engaging user experiences. The portfolio showcases Owen's skills, projects, and background in software development, emphasizing his expertise in frontend technologies and backend systems. The site includes a contact form for potential clients or collaborators to reach out directly.
+A static site that walks the visitor through a small cafe: the door, the counter, the menu wall, and a table with a receipt. Built with Astro and GSAP.
 
-## 🚀 Key Features
-- **About Me**: Introduces Owen Nyo, a Singaporean software developer skilled in **React**, **JavaScript**, **Python**, and more.
-- **Projects Section**: Highlights several major projects, such as:
-  - **Google In-Store**: A platform for Google retail employees to report store issues.
-  - **Library**: A book-browsing and purchasing platform.
-- **Contact Form**: Allows users to easily get in touch with Owen for collaboration or job opportunities.
-  
-## 🛠️ Tech Stack
-- **Frontend**: HTML, CSS, JavaScript, Vue, React
-- **Backend**: Python, C#, MySQL
+Live: https://owennyo.github.io/Personal_Portfolio/
 
-## 📂 File Structure
-- `index.html`: Main homepage showcasing Owen’s skills and projects.
-- `style.css`: Handles the styling of the entire portfolio.
-- `index.js`: Manages interactivity and dynamic content on the site.
+## Develop
 
-## 🚦 Future Enhancements
-- **More Projects**: Add new and ongoing projects as they develop.
-- **Blog Section**: Share coding tutorials and personal insights.
+    npm install
+    npm run dev
 
-## 👤 About the Developer
-Owen Nyo is a 22-year-old software engineer who is open to new job opportunities. He is continuously expanding his knowledge in web development and backend programming through his studies at the **Singapore Institute of Technology**.
+## Content
 
----
+- Projects: one markdown file each in `src/content/projects/`. Frontmatter holds title, stack, GitHub URL, optional live URL, screenshot, and order.
+- Bio and skills: `src/components/scenes/Counter.astro`.
+- Links on the receipt: `src/components/scenes/Table.astro`. The resume line appears when `public/resume.pdf` exists.
 
-🌐 **Check out the live site**: [Owen Nyo's Portfolio](https://owennyo.github.io/Personal_Portfolio/)
+## Deploy
 
+Pushing to `main` runs `.github/workflows/deploy.yml`, which builds the site and publishes it to GitHub Pages. The repository's Pages source must be set to "GitHub Actions".
+
+## Design
+
+Spec: `docs/superpowers/specs/2026-09-13-cafe-portfolio-design.md`
