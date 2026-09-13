@@ -1,0 +1,149 @@
+---
+const bio = [
+  "I'm Owen, 25, a final-year software engineering student at Singapore Institute of Technology.",
+  'I build web apps end to end, with a soft spot for interfaces that feel good to use.',
+  'Off the clock: coffee, side projects, and reading other people’s code.',
+];
+---
+
+<section class="scene" data-scene="counter" id="counter" aria-labelledby="counter-title">
+  <svg class="counter__pendant" viewBox="0 0 80 140" aria-hidden="true">
+    <line x1="40" y1="0" x2="40" y2="60" stroke="var(--espresso)" stroke-width="3" />
+    <path d="M10 92 L40 60 L70 92 Z" fill="var(--terracotta)" />
+    <ellipse cx="40" cy="112" rx="34" ry="26" fill="var(--amber)" opacity="0.3" />
+  </svg>
+  <span class="ring" style="width: 7rem; height: 7rem; left: 8%; bottom: 6%" aria-hidden="true"></span>
+
+  <div class="scene__inner counter">
+    <div class="counter__front">
+      <svg class="counter__machine" viewBox="0 0 140 200" role="img" aria-label="An espresso machine with a cup under the spout">
+        <rect x="10" y="60" width="120" height="110" rx="10" fill="var(--espresso)" />
+        <rect x="22" y="72" width="96" height="30" rx="4" fill="var(--terracotta)" />
+        <circle cx="40" cy="87" r="7" fill="var(--amber)" />
+        <circle cx="62" cy="87" r="7" fill="var(--paper)" />
+        <rect x="80" y="80" width="30" height="14" rx="2" fill="var(--paper)" opacity="0.6" />
+        <rect x="52" y="104" width="36" height="16" rx="3" fill="var(--wood)" />
+        <rect x="66" y="120" width="8" height="12" fill="var(--wood)" />
+        <g class="steam-loop">
+          <path d="M60 138 c-6 -8 6 -12 0 -20" fill="none" stroke="var(--paper)" stroke-width="2.5" stroke-linecap="round" opacity="0.8" />
+          <path d="M80 138 c-6 -8 6 -12 0 -20" fill="none" stroke="var(--paper)" stroke-width="2.5" stroke-linecap="round" opacity="0.8" />
+        </g>
+        <path d="M54 150 h32 v10 a10 10 0 0 1 -10 10 h-12 a10 10 0 0 1 -10 -10z" fill="var(--paper)" />
+        <rect x="0" y="170" width="140" height="14" rx="3" fill="var(--wood)" />
+        <rect x="10" y="184" width="120" height="16" fill="var(--sand)" />
+      </svg>
+
+      <svg class="counter__barista" viewBox="0 0 160 200" role="img" aria-label="Owen behind the counter, drawn flat">
+        <circle cx="80" cy="60" r="34" fill="var(--paper)" />
+        <path d="M46 56c4-30 64-30 68 0-10-14-58-14-68 0z" fill="var(--espresso)" />
+        <rect x="40" y="96" width="80" height="80" rx="18" fill="var(--terracotta)" />
+        <rect x="56" y="110" width="48" height="60" rx="8" fill="var(--paper)" />
+        <circle cx="70" cy="60" r="3" fill="var(--espresso)" />
+        <circle cx="90" cy="60" r="3" fill="var(--espresso)" />
+        <path d="M70 74q10 8 20 0" fill="none" stroke="var(--espresso)" stroke-width="3" stroke-linecap="round" />
+      </svg>
+
+      <svg class="counter__props" viewBox="0 0 160 120" role="img" aria-label="A stack of cups and a tip jar on the counter">
+        <g fill="var(--paper)" stroke="var(--espresso)" stroke-width="3">
+          <path d="M20 96 h44 v10 a10 10 0 0 1 -10 10 h-24 a10 10 0 0 1 -10 -10z" />
+          <path d="M22 78 h40 v10 a8 8 0 0 1 -8 8 h-24 a8 8 0 0 1 -8 -8z" />
+          <path d="M24 60 h36 v10 a8 8 0 0 1 -8 8 h-20 a8 8 0 0 1 -8 -8z" />
+          <path d="M26 42 h32 v10 a8 8 0 0 1 -8 8 h-16 a8 8 0 0 1 -8 -8z" />
+        </g>
+        <rect x="96" y="50" width="48" height="66" rx="8" fill="var(--paper)" opacity="0.85" stroke="var(--espresso)" stroke-width="3" />
+        <rect x="104" y="42" width="32" height="12" rx="3" fill="var(--espresso)" />
+        <g fill="var(--amber)"><circle cx="112" cy="104" r="6" /><circle cx="126" cy="100" r="6" /><circle cx="120" cy="90" r="6" /></g>
+        <rect x="102" y="66" width="36" height="14" rx="2" fill="var(--terracotta)" />
+        <text x="120" y="77" text-anchor="middle" font-size="9" font-weight="700" fill="var(--paper)" font-family="var(--font-body), sans-serif">TIPS</text>
+      </svg>
+
+      <div class="counter__board" data-reveal>
+        <h2 class="counter__title" id="counter-title">About the barista</h2>
+        {bio.map((line) => <p class="counter__line">{line}</p>)}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .counter {
+    display: grid;
+    gap: 1.75rem;
+  }
+
+  .counter__pendant {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: clamp(3rem, 7vw, 5rem);
+    transform: translateX(-50%);
+    pointer-events: none;
+  }
+
+  /* Front of house */
+  .counter__front {
+    position: relative;
+    display: grid;
+    grid-template-columns: auto auto auto 1fr;
+    gap: 1.5rem;
+    align-items: end;
+    padding-bottom: 1.5rem;
+  }
+
+  /* The bar everyone stands behind. */
+  .counter__front::after {
+    content: '';
+    position: absolute;
+    left: -2rem;
+    right: -2rem;
+    bottom: 0;
+    height: 1.5rem;
+    border-radius: 0.3rem;
+    background: linear-gradient(var(--wood), var(--espresso));
+    box-shadow: 0 10px 20px rgb(0 0 0 / 0.25);
+  }
+
+  .counter__machine {
+    width: clamp(7rem, 20vw, 12rem);
+  }
+
+  .counter__barista {
+    width: clamp(7rem, 22vw, 13rem);
+  }
+
+  .counter__props {
+    width: clamp(5rem, 12vw, 8rem);
+  }
+
+  .counter__board {
+    background: var(--chalk);
+    color: var(--paper);
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    border: 6px solid var(--wood);
+  }
+
+  .counter__title {
+    font-size: var(--step-2);
+    margin-bottom: 0.75rem;
+  }
+
+  .counter__line {
+    margin: 0 0 0.5rem;
+    max-width: 52ch;
+  }
+
+  @media (max-width: 767px) {
+    .counter__front {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .counter__props {
+      display: none;
+    }
+
+    .counter__board {
+      grid-column: 1 / -1;
+    }
+  }
+</style>
