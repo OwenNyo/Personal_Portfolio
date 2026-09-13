@@ -1,0 +1,133 @@
+---
+import { Image } from 'astro:assets';
+import { render, type CollectionEntry } from 'astro:content';
+
+interface Props {
+  project: CollectionEntry<'projects'>;
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+const { title, stack, github, live, image, imageAlt } = project.data;
+---
+
+<article class="card" data-reveal>
+  <div class="card__face card__face--front">
+    <Image src={image} alt={imageAlt} width={640} class="card__img" />
+    <h3 class="card__title">{title}</h3>
+    <p class="card__stack">{stack.join(' · ')}</p>
+    <button type="button" class="card__flip" aria-expanded="false">Details</button>
+  </div>
+  <div class="card__face card__face--back" inert>
+    <h3 class="card__title">{title}</h3>
+    <div class="card__body"><Content /></div>
+    <p class="card__links">
+      <a href={github} target="_blank" rel="noopener">GitHub</a>
+      {live && <a href={live} target="_blank" rel="noopener">Live site</a>}
+    </p>
+    <button type="button" class="card__flip" aria-expanded="true">Back</button>
+  </div>
+</article>
+
+<style>
+  .card {
+    position: relative;
+    display: grid;
+    perspective: 1200px;
+  }
+
+  .card__face {
+    grid-area: 1 / 1;
+    background: var(--paper);
+    color: var(--espresso);
+    border-radius: 0.5rem;
+    padding: 1rem;
+    box-shadow: 0 8px 24px rgb(0 0 0 / 0.25);
+    backface-visibility: hidden;
+    transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .card__face--back {
+    transform: rotateY(180deg);
+  }
+
+  .card.is-flipped .card__face--front {
+    transform: rotateY(180deg);
+  }
+
+  .card.is-flipped .card__face--back {
+    transform: rotateY(360deg);
+  }
+
+  .card:hover {
+    z-index: 1;
+  }
+
+  .card:hover .card__face--front {
+    transform: translateY(-6px);
+  }
+
+  .card.is-flipped:hover .card__face--front {
+    transform: rotateY(180deg);
+  }
+
+  .card__img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    border-radius: 0.25rem;
+  }
+
+  .card__title {
+    font-size: var(--step-1);
+  }
+
+  .card__stack {
+    margin: 0;
+    font-size: 0.9em;
+    color: var(--wood);
+  }
+
+  .card__body {
+    flex: 1;
+    font-size: 0.95em;
+  }
+
+  .card__body :global(p) {
+    margin: 0;
+  }
+
+  .card__links {
+    margin: 0;
+    display: flex;
+    gap: 1rem;
+    font-weight: 600;
+  }
+
+  .card__flip {
+    align-self: flex-start;
+    font: inherit;
+    font-weight: 600;
+    padding: 0.4rem 0.9rem;
+    border: 2px solid var(--espresso);
+    border-radius: 999px;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+  }
+
+  .card__flip:focus-visible {
+    outline: 3px solid var(--amber);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .card__face {
+      transition: none;
+    }
+  }
+</style>
