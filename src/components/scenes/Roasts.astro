@@ -1,0 +1,407 @@
+---
+type Shape = 'sack' | 'tin' | 'burlap';
+type Tone = 'kraft' | 'paper' | 'espresso' | 'stripe';
+
+interface Bag {
+  name: string;
+  kind: string;
+  roast: 1 | 2 | 3 | 4;
+  notes: string;
+  shape: Shape;
+  tone: Tone;
+}
+
+const bags: Bag[] = [
+  { name: 'React', kind: 'single origin', roast: 4, notes: 'hooks, routing, state', shape: 'sack', tone: 'kraft' },
+  { name: 'Next.js', kind: 'single origin', roast: 3, notes: 'app router, SSR, SSG', shape: 'tin', tone: 'stripe' },
+  { name: 'JavaScript', kind: 'single origin', roast: 4, notes: 'vanilla, tooling, DOM', shape: 'burlap', tone: 'espresso' },
+  { name: 'HTML', kind: 'house', roast: 4, notes: 'semantic, accessible', shape: 'tin', tone: 'paper' },
+  { name: 'CSS', kind: 'house', roast: 4, notes: 'layout, motion', shape: 'sack', tone: 'stripe' },
+  { name: 'Python', kind: 'single origin', roast: 3, notes: 'Flask, scripts, data', shape: 'burlap', tone: 'kraft' },
+  { name: 'SQL', kind: 'blend', roast: 3, notes: 'MySQL, schema design', shape: 'sack', tone: 'espresso' },
+  { name: 'C#', kind: 'single origin', roast: 2, notes: 'ASP.NET, OOP', shape: 'tin', tone: 'kraft' },
+  { name: 'Drupal', kind: 'blend', roast: 3, notes: 'themes, modules, PHP', shape: 'burlap', tone: 'paper' },
+];
+
+const roastName = ['', 'light', 'medium', 'medium-dark', 'dark'];
+
+
+// Bag artwork. Colours come from CSS custom properties set per tone so one drawing serves every bag.
+const shapes: Record<Shape, string> = {
+  sack: `
+    <path d="M18 40 h84 v100 a14 14 0 0 1 -14 14 h-56 a14 14 0 0 1 -14 -14z" fill="var(--bag)" />
+    <path d="M18 40 h84 v100 a14 14 0 0 1 -14 14 h-56 a14 14 0 0 1 -14 -14z" fill="var(--bag-overlay, none)" />
+    <path d="M14 26 h92 a6 6 0 0 1 6 6 v6 a6 6 0 0 1 -6 6 h-92 a6 6 0 0 1 -6 -6 v-6 a6 6 0 0 1 6 -6z" fill="var(--bag-dark)" />
+    <path d="M22 34 h76" stroke="var(--bag)" stroke-width="2" stroke-dasharray="4 4" />
+    <path d="M26 46 v96 M94 46 v96" stroke="var(--bag-dark)" stroke-width="1.5" stroke-dasharray="3 5" opacity=".7" />
+    <rect x="36" y="82" width="48" height="40" rx="8" fill="#2a1a10" />
+    <g fill="#5b3a25">
+      <use href="#bean" x="40" y="94" width="12" height="16" transform="rotate(-20 46 102)" />
+      <use href="#bean" x="54" y="90" width="12" height="16" transform="rotate(15 60 98)" />
+      <use href="#bean" x="66" y="96" width="12" height="16" transform="rotate(-5 72 104)" />
+      <use href="#bean" x="47" y="104" width="12" height="16" transform="rotate(30 53 112)" />
+    </g>
+    <circle cx="60" cy="66" r="12" fill="none" stroke="var(--bag-dark)" stroke-width="2" />
+    <use href="#bean" x="54" y="58" width="12" height="16" fill="var(--bag-dark)" />`,
+  tin: `
+    <path d="M12 56 h96 v90 a10 10 0 0 1 -10 10 h-76 a10 10 0 0 1 -10 -10z" fill="var(--bag)" />
+    <path d="M12 56 h96 v90 a10 10 0 0 1 -10 10 h-76 a10 10 0 0 1 -10 -10z" fill="var(--bag-overlay, none)" />
+    <path d="M8 46 h104 a4 4 0 0 1 4 4 v6 a4 4 0 0 1 -4 4 h-104 a4 4 0 0 1 -4 -4 v-6 a4 4 0 0 1 4 -4z" fill="var(--bag-dark)" />
+    <path d="M30 44 q30 -14 60 0" fill="none" stroke="#9a8b78" stroke-width="3" stroke-linecap="round" />
+    <circle cx="30" cy="44" r="3" fill="#9a8b78" /><circle cx="90" cy="44" r="3" fill="#9a8b78" />
+    <circle cx="60" cy="100" r="22" fill="#2a1a10" />
+    <g fill="#5b3a25">
+      <use href="#bean" x="46" y="90" width="12" height="16" transform="rotate(-25 52 98)" />
+      <use href="#bean" x="60" y="86" width="12" height="16" transform="rotate(20 66 94)" />
+      <use href="#bean" x="54" y="102" width="12" height="16" transform="rotate(5 60 110)" />
+      <use href="#bean" x="66" y="100" width="12" height="16" transform="rotate(-40 72 108)" />
+    </g>
+    <path d="M20 66 h80" stroke="var(--bag-dark)" stroke-width="1.5" stroke-dasharray="2 4" opacity=".7" />`,
+  burlap: `
+    <path d="M22 50 c-14 30 -14 70 -6 96 a12 12 0 0 0 12 10 h64 a12 12 0 0 0 12 -10 c8 -26 8 -66 -6 -96z" fill="var(--bag)" />
+    <path d="M22 50 c-14 30 -14 70 -6 96 a12 12 0 0 0 12 10 h64 a12 12 0 0 0 12 -10 c8 -26 8 -66 -6 -96z" fill="var(--bag-overlay, none)" />
+    <g stroke="var(--bag-dark)" stroke-width="1" opacity=".45">
+      <path d="M20 70 h80 M17 90 h86 M16 110 h88 M18 130 h84" />
+      <path d="M36 54 v100 M60 52 v104 M84 54 v100" />
+    </g>
+    <path d="M30 40 c10 -14 50 -14 60 0 c-10 8 -50 8 -60 0z" fill="var(--bag-dark)" />
+    <ellipse cx="60" cy="50" rx="34" ry="6" fill="none" stroke="#b8905a" stroke-width="5" />
+    <path d="M92 50 q10 6 6 18" fill="none" stroke="#b8905a" stroke-width="4" stroke-linecap="round" />
+    <path d="M40 78 h40 l-4 40 h-32z" fill="#2a1a10" />
+    <g fill="#5b3a25">
+      <use href="#bean" x="44" y="84" width="12" height="16" transform="rotate(-15 50 92)" />
+      <use href="#bean" x="58" y="82" width="12" height="16" transform="rotate(25 64 90)" />
+      <use href="#bean" x="50" y="98" width="12" height="16" transform="rotate(5 56 106)" />
+    </g>`,
+};
+
+// Loose beans on the shelves: x and y in percent, rotation in degrees.
+const spill = [
+  [6, 93, -20], [9, 96, 40], [13, 94, 10], [27, 95, -50], [31, 97, 25], [44, 93, 70],
+  [58, 96, -30], [62, 94, 15], [73, 97, 55], [77, 95, -10], [88, 96, 35], [92, 93, -60],
+  [50, 62, 20], [54, 64, -35], [82, 63, 60], [17, 64, -15], [40, 30, 45], [70, 31, -25], [24, 31, 5],
+];
+---
+
+<section class="scene" data-scene="roasts" id="roasts" aria-labelledby="skills-title">
+  <svg width="0" height="0" style="position: absolute" aria-hidden="true">
+    <symbol id="bean" viewBox="0 0 20 28">
+      <ellipse cx="10" cy="14" rx="9" ry="13" />
+      <path d="M10 2c-5 7 5 17 0 24" fill="none" stroke="var(--bean-crease, #e9cfae)" stroke-width="2.2" stroke-linecap="round" />
+    </symbol>
+    <pattern id="stripes" width="16" height="16" patternUnits="userSpaceOnUse">
+      <rect x="9" width="7" height="16" fill="#fbf6ee" opacity="0.6" />
+    </pattern>
+  </svg>
+
+  <span class="ring" style="width: 6rem; height: 6rem; right: 5%; top: 10%" aria-hidden="true"></span>
+
+  <div class="scene__inner">
+    <div class="shelf">
+      <h2 class="shelf__title" id="skills-title">
+        <span class="shelf__eyebrow">Today's roasts</span>
+        What I brew with
+      </h2>
+
+      <ul class="bags" aria-labelledby="skills-title">
+        {
+          bags.map((bag) => (
+            <li class={`bag bag--${bag.tone}`} data-reveal>
+              <svg class="bag__art" viewBox="0 0 120 160" aria-hidden="true" set:html={shapes[bag.shape]} />
+              <div class="bag__label">
+                <span class="bag__kind">{bag.kind}</span>
+                <span class="bag__name">{bag.name}</span>
+                <span class="bag__roast" role="img" aria-label={`${roastName[bag.roast]} roast, ${bag.roast} of 4`}>
+                  {[1, 2, 3, 4].map((n) => (
+                    <svg viewBox="0 0 20 28" class={n <= bag.roast ? 'is-on' : ''} aria-hidden="true"><use href="#bean" /></svg>
+                  ))}
+                  <span class="bag__roast-name">{roastName[bag.roast]}</span>
+                </span>
+                <span class="bag__notes">{bag.notes}</span>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+
+      <svg class="spill" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+        {spill.map(([x, y, r]) => <use href="#bean" x={x} y={y} width="1.6" height="2.2" transform={`rotate(${r} ${x + 0.8} ${y + 1.1})`} />)}
+      </svg>
+
+      <svg class="scale" viewBox="0 0 120 110" role="img" aria-label="A brass coffee scale with a scoop of beans">
+        <rect x="10" y="90" width="100" height="12" rx="3" fill="var(--espresso)" />
+        <rect x="52" y="30" width="16" height="60" fill="var(--wood)" />
+        <path d="M60 30 l-46 0 a4 4 0 0 0 -4 4 v4 h100 v-4 a4 4 0 0 0 -4 -4z" fill="#c99a4a" />
+        <path d="M12 46 q22 24 44 0z" fill="#c99a4a" />
+        <path d="M64 46 q22 24 44 0z" fill="#c99a4a" />
+        <g fill="#4a2c1c"><use href="#bean" x="24" y="36" width="8" height="11" /><use href="#bean" x="34" y="34" width="8" height="11" transform="rotate(30 38 40)" /><use href="#bean" x="29" y="42" width="8" height="11" transform="rotate(-20 33 48)" /></g>
+        <path d="M78 42 h20 a8 8 0 0 1 0 16 h-20z" fill="#c99a4a" />
+        <path d="M98 50 h14" stroke="#c99a4a" stroke-width="4" stroke-linecap="round" />
+      </svg>
+
+      <span class="tag tag--left">fresh this week</span>
+      <span class="tag tag--right">ask for a taste</span>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Shelf wall */
+  .shelf {
+    position: relative;
+    padding: 1.25rem 1.5rem 2.75rem;
+    border-radius: 0.75rem;
+    background-color: var(--paper);
+    background-image:
+      linear-gradient(var(--sand) 1px, transparent 1px),
+      linear-gradient(90deg, var(--sand) 1px, transparent 1px);
+    background-size: 2.25rem 2.25rem;
+    box-shadow: inset 0 0 0 6px var(--wood);
+  }
+
+  .shelf__title {
+    display: grid;
+    font-size: var(--step-1);
+    margin: 0 0 1rem;
+  }
+
+  .shelf__eyebrow {
+    font-family: var(--font-body), sans-serif;
+    font-size: 0.7em;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+  }
+
+  /* Three planks of three. Each bag draws the plank segment beneath it; segments overlap the column gap so a row reads as one plank. */
+  .bags {
+    --gap-x: 1.25rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem var(--gap-x);
+    position: relative;
+    z-index: 1;
+  }
+
+  .bag {
+    position: relative;
+    display: grid;
+    justify-items: center;
+    align-content: end;
+  }
+
+  .bag::after {
+    content: '';
+    position: absolute;
+    left: calc(var(--gap-x) / -2 - 0.5rem);
+    right: calc(var(--gap-x) / -2 - 0.5rem);
+    bottom: -1.1rem;
+    height: 0.9rem;
+    background: linear-gradient(var(--wood), var(--espresso));
+    box-shadow: 0 8px 14px rgb(0 0 0 / 0.25);
+    z-index: -1;
+  }
+
+  .bag:first-child::after,
+  .bag:nth-child(3n + 1)::after {
+    left: -0.75rem;
+    border-radius: 0.2rem 0 0 0.2rem;
+  }
+
+  .bag:nth-child(3n)::after {
+    right: -0.75rem;
+    border-radius: 0 0.2rem 0.2rem 0;
+  }
+
+  .bag__art,
+  .bag__label {
+    transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .bag:hover .bag__art,
+  .bag:hover .bag__label {
+    transform: translateY(-8px) rotate(-2deg);
+  }
+
+  .bag:nth-child(even):hover .bag__art,
+  .bag:nth-child(even):hover .bag__label {
+    transform: translateY(-8px) rotate(2deg);
+  }
+
+  .bag__art {
+    width: min(100%, 7.25rem);
+    filter: drop-shadow(0 10px 10px rgb(0 0 0 / 0.25));
+  }
+
+  .bag--kraft { --bag: #c9a97e; --bag-dark: #a98455; --label: var(--paper); --ink: var(--espresso); }
+  .bag--paper { --bag: #fbf6ee; --bag-dark: #d8c7ad; --label: var(--chalk); --ink: var(--cream); }
+  .bag--espresso { --bag: #4a2c1c; --bag-dark: #2e1a10; --label: var(--amber); --ink: var(--espresso); }
+  .bag--stripe { --bag: #c8643c; --bag-dark: #8a3c1e; --bag-overlay: url(#stripes); --label: var(--paper); --ink: var(--espresso); }
+
+  .bag__label {
+    display: grid;
+    gap: 0.15rem;
+    justify-items: center;
+    text-align: center;
+    width: min(100%, 8.75rem);
+    margin-top: -1.4rem;
+    padding: 0.55rem 0.6rem 0.65rem;
+    background: var(--label);
+    color: var(--ink);
+    border-radius: 0.3rem;
+    box-shadow: 0 4px 8px rgb(0 0 0 / 0.2);
+    position: relative;
+    z-index: 1;
+  }
+
+  .bag__label::before {
+    content: '';
+    position: absolute;
+    top: -0.35rem;
+    left: 50%;
+    width: 1.6rem;
+    height: 0.7rem;
+    transform: translateX(-50%) rotate(-3deg);
+    background: rgb(224 169 74 / 0.6);
+  }
+
+  .bag__kind {
+    font-size: 0.6rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 600;
+    opacity: 0.8;
+  }
+
+  .bag__name {
+    font-family: var(--font-display), Georgia, serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    line-height: 1.1;
+  }
+
+  .bag__roast {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 0.15rem;
+    --bean-crease: var(--label);
+  }
+
+  .bag__roast svg {
+    width: 0.7rem;
+    fill: currentColor;
+    opacity: 0.25;
+  }
+
+  .bag__roast svg.is-on {
+    opacity: 1;
+  }
+
+  .bag__roast-name {
+    flex-basis: 100%;
+    font-family: var(--font-display), Georgia, serif;
+    font-style: italic;
+    font-size: 0.75rem;
+    white-space: nowrap;
+  }
+
+  .bag__notes {
+    font-size: 0.75rem;
+    line-height: 1.3;
+  }
+
+  .spill {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    fill: var(--espresso);
+    pointer-events: none;
+    --bean-crease: var(--sand);
+  }
+
+  .spill use {
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+
+  .scale {
+    position: absolute;
+    right: 1rem;
+    bottom: 2.2rem;
+    width: clamp(3.5rem, 7vw, 5.5rem);
+  }
+
+  .tag {
+    position: absolute;
+    top: 4rem;
+    padding: 0.25rem 0.6rem;
+    background: var(--amber);
+    color: var(--espresso);
+    font-family: var(--font-display), Georgia, serif;
+    font-style: italic;
+    font-size: 0.8rem;
+    box-shadow: 0 3px 6px rgb(0 0 0 / 0.2);
+  }
+
+  .tag::before {
+    content: '';
+    position: absolute;
+    top: -0.9rem;
+    left: 50%;
+    width: 1px;
+    height: 0.9rem;
+    background: var(--espresso);
+  }
+
+  .tag--left { right: 12rem; rotate: -4deg; }
+  .tag--right { right: 1.5rem; rotate: 3deg; }
+
+  @media (max-width: 767px) {
+    .bags {
+      --gap-x: 1rem;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2.75rem var(--gap-x);
+    }
+
+    .bag:nth-child(3n + 1)::after,
+    .bag:nth-child(3n)::after {
+      left: calc(var(--gap-x) / -2 - 0.5rem);
+      right: calc(var(--gap-x) / -2 - 0.5rem);
+      border-radius: 0;
+    }
+
+    .bag:nth-child(odd)::after {
+      left: -0.75rem;
+      border-radius: 0.2rem 0 0 0.2rem;
+    }
+
+    .bag:nth-child(even)::after,
+    .bag:last-child::after {
+      right: -0.75rem;
+      border-radius: 0 0.2rem 0.2rem 0;
+    }
+
+    .shelf {
+      padding-top: 3.5rem;
+    }
+
+    .scale,
+    .tag {
+      display: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .bag__art,
+    .bag__label {
+      transition: none;
+    }
+  }
+</style>
