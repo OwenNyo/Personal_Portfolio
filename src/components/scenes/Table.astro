@@ -1,0 +1,193 @@
+---
+import { existsSync } from 'node:fs';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const hasResume = existsSync(new URL('../../../public/resume.pdf', import.meta.url));
+const year = new Date().getFullYear();
+
+const lines = [
+  { label: 'GitHub', href: 'https://github.com/OwenNyo', text: 'github.com/OwenNyo' },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/owen-nyo/', text: 'linkedin.com/in/owen-nyo' },
+  { label: 'Email', href: 'mailto:owennyowy@gmail.com', text: 'owennyowy@gmail.com' },
+  ...(hasResume ? [{ label: 'Resume', href: `${base}/resume.pdf`, text: 'resume.pdf' }] : []),
+];
+---
+
+<section class="scene scene--dark" data-scene="table" id="table" aria-labelledby="table-title">
+  <div class="table__light" aria-hidden="true"></div>
+  <svg class="table__window" viewBox="0 0 220 260" role="img" aria-label="A window onto the night sky">
+    <rect x="6" y="6" width="208" height="248" rx="6" fill="#0f1a2e" stroke="var(--espresso)" stroke-width="12" />
+    <circle cx="150" cy="70" r="22" fill="var(--paper)" opacity="0.9" />
+    <circle cx="160" cy="62" r="19" fill="#0f1a2e" />
+    <circle class="star" cx="40" cy="50" r="2" fill="var(--paper)" />
+    <circle class="star" cx="70" cy="30" r="1.5" fill="var(--paper)" style="animation-delay: -1s" />
+    <circle class="star" cx="100" cy="90" r="2" fill="var(--paper)" style="animation-delay: -2s" />
+    <circle class="star" cx="50" cy="130" r="1.5" fill="var(--paper)" style="animation-delay: -0.5s" />
+    <circle class="star" cx="170" cy="140" r="2" fill="var(--paper)" style="animation-delay: -1.5s" />
+    <circle class="star" cx="120" cy="170" r="1.5" fill="var(--paper)" style="animation-delay: -2.5s" />
+    <circle class="star" cx="80" cy="210" r="2" fill="var(--paper)" style="animation-delay: -0.8s" />
+    <circle class="star" cx="180" cy="220" r="1.5" fill="var(--paper)" style="animation-delay: -1.8s" />
+    <line x1="110" y1="12" x2="110" y2="248" stroke="var(--espresso)" stroke-width="8" />
+    <line x1="12" y1="130" x2="208" y2="130" stroke="var(--espresso)" stroke-width="8" />
+  </svg>
+
+  <div class="scene__inner table">
+    <svg class="table__cup" viewBox="0 0 300 160" role="img" aria-label="A cup of coffee, a candle, and a cookie on a table under a lamp">
+      <ellipse cx="150" cy="140" rx="140" ry="14" fill="var(--wood)" />
+      <g class="table__candle">
+        <rect x="236" y="92" width="22" height="46" rx="3" fill="var(--paper)" />
+        <rect x="245" y="80" width="4" height="14" fill="var(--espresso)" />
+        <path class="flame" d="M247 80 c-7 -8 -4 -18 0 -24 c4 6 7 16 0 24z" fill="var(--amber)" />
+        <ellipse cx="247" cy="138" rx="20" ry="5" fill="var(--espresso)" opacity="0.5" />
+      </g>
+      <g class="table__cookie">
+        <ellipse cx="48" cy="130" rx="30" ry="9" fill="var(--paper)" />
+        <circle cx="48" cy="124" r="14" fill="#b8793f" />
+        <circle cx="43" cy="120" r="2" fill="var(--espresso)" />
+        <circle cx="53" cy="126" r="2" fill="var(--espresso)" />
+        <circle cx="49" cy="130" r="1.5" fill="var(--espresso)" />
+      </g>
+      <g class="steam-loop">
+        <g class="table__steam" fill="none" stroke="var(--cream)" stroke-width="3" stroke-linecap="round" opacity="0.8">
+          <path d="M130 70c-10-14 10-22 0-36" />
+          <path d="M150 66c-10-14 10-22 0-36" />
+          <path d="M170 70c-10-14 10-22 0-36" />
+        </g>
+      </g>
+      <path d="M100 80h100v30a30 30 0 0 1-30 30H130a30 30 0 0 1-30-30z" fill="var(--paper)" />
+      <path d="M200 90h12a14 14 0 0 1 0 28h-12" fill="none" stroke="var(--paper)" stroke-width="8" />
+      <ellipse cx="150" cy="80" rx="50" ry="8" fill="var(--espresso)" />
+    </svg>
+
+    <p class="table__note">Wi-Fi: ask the barista</p>
+
+    <footer class="receipt" data-reveal>
+      <h2 class="receipt__title" id="table-title">Your receipt</h2>
+      <p class="receipt__line receipt__meta">Owen's · table for one · {year}</p>
+      <ul class="receipt__list">
+        {
+          lines.map((line) => (
+            <li class="receipt__line">
+              <span>{line.label}</span>
+              <a href={line.href} target={line.href.startsWith('mailto:') ? undefined : '_blank'} rel="noopener">
+                {line.text}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <p class="receipt__line receipt__thanks">Thanks for stopping by.</p>
+      <p class="receipt__line receipt__copy">© {year} Owen Nyo</p>
+    </footer>
+  </div>
+</section>
+
+<style>
+  .table__light {
+    position: absolute;
+    left: 50%;
+    top: -10%;
+    width: 70vmin;
+    height: 70vmin;
+    transform: translateX(-50%);
+    background: radial-gradient(closest-side, rgb(224 169 74 / 0.35), transparent);
+    pointer-events: none;
+  }
+
+  .table {
+    display: grid;
+    gap: 2rem;
+    justify-items: center;
+    position: relative;
+  }
+
+  .table__cup {
+    width: clamp(14rem, 40vw, 24rem);
+  }
+
+  .table__window {
+    position: absolute;
+    top: 8%;
+    left: 6%;
+    width: clamp(6rem, 14vw, 11rem);
+    pointer-events: none;
+  }
+
+  .table__note {
+    position: absolute;
+    right: 6%;
+    bottom: 10%;
+    margin: 0;
+    padding: 0.6rem 0.9rem;
+    background: var(--amber);
+    color: var(--espresso);
+    font-family: var(--font-display), Georgia, serif;
+    font-style: italic;
+    font-size: 0.95em;
+    rotate: -4deg;
+    box-shadow: 2px 4px 10px rgb(0 0 0 / 0.4);
+  }
+
+  @media (max-width: 767px) {
+    .table__window {
+      display: none;
+    }
+
+    .table__note {
+      position: static;
+      rotate: -2deg;
+    }
+  }
+
+  .receipt {
+    width: min(100%, 26rem);
+    background: var(--paper);
+    color: var(--espresso);
+    padding: 1.5rem 1.25rem 2rem;
+    font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+    font-size: 0.9em;
+    box-shadow: 0 16px 40px rgb(0 0 0 / 0.5);
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 8px), 95% 100%, 90% calc(100% - 8px), 85% 100%, 80% calc(100% - 8px), 75% 100%, 70% calc(100% - 8px), 65% 100%, 60% calc(100% - 8px), 55% 100%, 50% calc(100% - 8px), 45% 100%, 40% calc(100% - 8px), 35% 100%, 30% calc(100% - 8px), 25% 100%, 20% calc(100% - 8px), 15% 100%, 10% calc(100% - 8px), 5% 100%, 0 calc(100% - 8px));
+  }
+
+  .receipt__title {
+    font-family: inherit;
+    font-size: 1.1em;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .receipt__meta,
+  .receipt__thanks,
+  .receipt__copy {
+    text-align: center;
+    margin: 0.5rem 0;
+  }
+
+  .receipt__list {
+    list-style: none;
+    margin: 1rem 0;
+    padding: 1rem 0;
+    border-top: 1px dashed var(--wood);
+    border-bottom: 1px dashed var(--wood);
+  }
+
+  .receipt__list .receipt__line {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin: 0.4rem 0;
+  }
+
+  .receipt a {
+    color: var(--wood);
+    font-weight: 600;
+  }
+
+  .receipt a:focus-visible {
+    outline: 3px solid var(--amber);
+    outline-offset: 2px;
+  }
+</style>
