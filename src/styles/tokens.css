@@ -1,0 +1,19 @@
+:root {
+  --roast: #2b1d16;
+  --roast-2: #4a3327;
+  --foam: #f1e6d6;
+  --foam-dim: rgb(241 230 214 / 0.6);
+  --foam-line: rgb(241 230 214 / 0.3);
+  --caramel: #c98b3e;
+
+  --font-display: 'Bricolage Grotesque', 'Arial Black', Impact, sans-serif;
+  --font-body: 'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif;
+
+  --text-0: clamp(1rem, 0.95rem + 0.2vw, 1.125rem);
+  --text-1: clamp(1.25rem, 1.1rem + 0.6vw, 1.6rem);
+  --text-2: clamp(2rem, 1.5rem + 2vw, 3.25rem);
+  --text-3: clamp(4rem, 2rem + 10vw, 11rem);
+
+  --gutter: clamp(1.25rem, 5vw, 4rem);
+  --measure: 64rem;
+}

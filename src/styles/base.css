@@ -1,0 +1,117 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--roast);
+  color: var(--foam);
+  font-family: var(--font-body);
+  font-size: var(--text-0);
+  line-height: 1.55;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  margin: 0;
+  text-wrap: balance;
+}
+
+p {
+  margin: 0;
+  max-width: 62ch;
+}
+
+a {
+  color: inherit;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid var(--caramel);
+  outline-offset: 3px;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.wrap {
+  width: min(100% - 2 * var(--gutter), var(--measure));
+  margin-inline: auto;
+}
+
+.section {
+  min-height: 100svh;
+  display: grid;
+  align-content: center;
+  padding-block: 6rem;
+}
+
+/* The perforation between panels of the label. */
+.tear {
+  border: 0;
+  border-top: 2px dashed var(--foam-line);
+  margin: 0;
+}
+
+.section-title {
+  font-size: var(--text-2);
+  margin-bottom: 2rem;
+}
+
+.pill {
+  display: inline-block;
+  padding: 0.55rem 1.2rem;
+  border: 1.5px solid var(--foam);
+  border-radius: 999px;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.pill:hover {
+  background: var(--foam);
+  color: var(--roast);
+}
+
+.pill--fill {
+  background: var(--caramel);
+  border-color: var(--caramel);
+  color: var(--roast);
+}
+
+.pill--fill:hover {
+  background: var(--foam);
+  border-color: var(--foam);
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
