@@ -22,11 +22,29 @@ export const about = {
   },
   teacher: {
     blurb:
-      "two trimesters as a teaching assistant at SIT and three years as a mentor in the ICT-SMC programme. turns out explaining recursion at 9am is the fastest way to actually understand it, and watching someone's build go green for the first time never gets old. if you're a junior reading this, my inbox is open.",
-    stats: [
-      { value: '150+', label: 'students guided' },
-      { value: '6', label: 'modules covered' },
-      { value: '3 yrs', label: 'mentoring' },
+      "two trimesters as a teaching assistant at SIT. could never understand why they always put our lessons at 9am, like who is even awake enough to learn. also three years as a mentor in the ICT-SMC programme. simply lovely to guide lost sheep back home when they need it the most.",
+    // Click a module on the site to read its note.
+    modules: [
+      {
+        name: 'Intro to Software Engineering',
+        note: 'got assigned to help the very professor i may have ragebaited a little too much as a student.',
+      },
+      {
+        name: 'Software Design',
+        note: 'once mediated a team dispute because my professor wanted a gen z to handle it. it worked, somehow.',
+      },
+      {
+        name: 'Human Computer Interaction',
+        note: 'the module that made me care about buttons. yes, padding matters. yes, i will bring it up.',
+      },
+      {
+        name: 'Mathematics 1',
+        note: 'caught a few people submitting the exact same homework every single time i marked. zz.',
+      },
+      {
+        name: 'Mathematics 2',
+        note: 'felt more like an english class than a math class. like, who uses stats man.',
+      },
     ],
   },
   baker: {

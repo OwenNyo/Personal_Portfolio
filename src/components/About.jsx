@@ -5,7 +5,7 @@ import LoyaltyCard from './LoyaltyCard.jsx';
 const tabs = [
   { id: 'engineer', icon: '☕', label: 'software engineer', tint: 'caramel' },
   { id: 'offClock', icon: '♪', label: 'off the clock', tint: 'olive' },
-  { id: 'teacher', icon: '✎', label: 'teacher', tint: 'espresso' },
+  { id: 'teacher', icon: '✎', label: 'mentor', tint: 'espresso' },
   { id: 'baker', icon: '🥐', label: 'baker', tint: 'cherry' },
 ];
 
@@ -53,18 +53,30 @@ function OffClock() {
 }
 
 function Teacher() {
-  const { blurb, stats } = about.teacher;
+  const { blurb, modules } = about.teacher;
+  const [open, setOpen] = useState(null);
+  const picked = modules.find((m) => m.name === open);
   return (
     <>
       <p className="panel__text">{blurb}</p>
-      <dl className="stats">
-        {stats.map((s) => (
-          <div className="stats__item" key={s.label}>
-            <dt className="mono">{s.label}</dt>
-            <dd>{s.value}</dd>
-          </div>
+      <p className="panel__label mono">modules i've mentored · tap one for the barista's note</p>
+      <ul className="modules">
+        {modules.map((m) => (
+          <li key={m.name}>
+            <button
+              type="button"
+              className={`module${m.name === open ? ' is-on' : ''}`}
+              aria-pressed={m.name === open}
+              onClick={() => setOpen(m.name === open ? null : m.name)}
+            >
+              {m.name}
+            </button>
+          </li>
         ))}
-      </dl>
+      </ul>
+      <p className="modules__note" aria-live="polite">
+        {picked ? picked.note : 'pick a module and i will tell you how it went.'}
+      </p>
     </>
   );
 }

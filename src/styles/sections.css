@@ -340,31 +340,53 @@
   color: var(--paper-mute);
 }
 
-/* Teaching stats */
-.stats {
+.modules {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
-  margin: 1.5rem 0 0;
+  gap: 0.5rem;
 }
 
-.stats__item {
-  min-width: 9rem;
-  padding: 0.9rem 1.1rem;
-  border: 1.5px dashed var(--paper-line);
-  border-radius: 0.8rem;
+.module {
+  padding: 0.4rem 0.9rem;
+  border: 1.5px solid var(--espresso);
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  background: rgb(42 26 18 / 0.05);
+  transition: rotate 0.15s, background 0.15s, color 0.15s;
 }
 
-.stats__item dt {
-  color: var(--paper-mute);
-}
-
-.stats__item dd {
-  margin: 0.2rem 0 0;
-  font-family: var(--font-display);
-  font-size: 2rem;
-  line-height: 1;
+.module:hover {
+  rotate: -3deg;
+  background: rgb(168 90 28 / 0.12);
+  border-color: var(--burnt);
   color: var(--burnt);
+}
+
+.module.is-on,
+.module.is-on:hover {
+  rotate: 2deg;
+  background: var(--espresso);
+  border-color: var(--espresso);
+  color: var(--paper);
+}
+
+.modules__note {
+  margin-top: 0.9rem;
+  max-width: 60ch;
+  padding: 0.8rem 1rem;
+  border-left: 3px solid var(--burnt);
+  background: rgb(255 253 247 / 0.7);
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.1rem;
+  color: var(--paper-body);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .module {
+    transition: none;
+  }
 }
 
 /* Fun facts */
