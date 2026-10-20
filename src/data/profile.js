@@ -1,5 +1,5 @@
-// Hero photos: import images and list them here. Empty list shows the placeholder.
-// import me1 from '../assets/me/me1.jpg';
+// Hero photos. Two or more and the polaroid cycles on click.
+import owen from '../assets/me/owen.jpg';
 
 export const profile = {
   handle: '@owennyowy',
@@ -7,7 +7,7 @@ export const profile = {
   greeting: "hi! i'm Owen,",
   taglines: ['a coffee lover', 'a baker', 'a gamer'],
   intro: 'welcome to my portfolio, freshly brewed.',
-  photos: [],
+  photos: [{ src: owen, alt: 'Owen smiling in a light green t-shirt' }],
   photoCaption: 'me, post-coffee ☕',
   links: {
     email: 'mailto:owennyowy@gmail.com',
