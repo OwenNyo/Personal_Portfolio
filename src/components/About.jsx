@@ -83,20 +83,73 @@ function Teacher() {
 
 function Baker() {
   const { blurb, bakes } = about.baker;
-  const slots = [0, 1, 2];
+  const [open, setOpen] = useState(null);
+  const [lessSugar, setLessSugar] = useState(true);
+  const bake = bakes.find((b) => b.name === open);
+
   return (
-    <div className="panel__split">
-      <p className="panel__text">{blurb}</p>
-      <div className="bakes">
-        {slots.map((i) =>
-          bakes[i] ? (
-            <img key={i} className="bakes__shot" src={bakes[i].src} alt={bakes[i].alt} loading="lazy" />
-          ) : (
-            <div key={i} className="bakes__shot bakes__shot--empty" aria-hidden="true" />
-          ),
-        )}
+    <>
+      <div className="baker__top">
+        <p className="panel__text">{blurb}</p>
+        <ul className="bakes">
+        {bakes.map((b) => (
+          <li key={b.name}>
+            <button
+              type="button"
+              className={`bakes__pick${b.name === open ? ' is-on' : ''}`}
+              aria-pressed={b.name === open}
+              aria-label={`${b.name} recipe`}
+              onClick={() => setOpen(b.name === open ? null : b.name)}
+            >
+              <img className="bakes__shot" src={b.src} alt={b.alt} loading="lazy" width="400" height="400" />
+              <span className="bakes__name">{b.name}</span>
+            </button>
+          </li>
+        ))}
+        </ul>
       </div>
-    </div>
+      {bake ? (
+        <article className="recipe" aria-live="polite">
+          <div className="recipe__head">
+            <h4 className="recipe__title">{bake.name}</h4>
+            <p className="mono recipe__meta">
+              {bake.time} · {bake.yields}
+            </p>
+            <button
+              type="button"
+              className={`sugar${lessSugar ? ' is-on' : ''}`}
+              aria-pressed={lessSugar}
+              onClick={() => setLessSugar(!lessSugar)}
+            >
+              <span className="sugar__dot" aria-hidden="true" />
+              less sugar {lessSugar ? 'on' : 'off'}
+            </button>
+          </div>
+          <div className="recipe__body">
+            <div>
+              <p className="recipe__label mono">ingredients</p>
+              <ul className="recipe__list">
+                {bake.ingredients.map((i) => (
+                  <li key={i}>{i}</li>
+                ))}
+                <li className="recipe__sugar">{lessSugar ? bake.sugar.less : bake.sugar.regular}</li>
+              </ul>
+            </div>
+            <div>
+              <p className="recipe__label mono">method</p>
+              <ol className="recipe__steps">
+                {bake.steps.map((step) => (
+                  <li key={step}>{step}</li>
+                ))}
+              </ol>
+              {lessSugar && <p className="recipe__tip">{bake.tip}</p>}
+            </div>
+          </div>
+        </article>
+      ) : (
+        <p className="panel__label mono">tap a bake for the recipe, less-sugar version included</p>
+      )}
+    </>
   );
 }
 
