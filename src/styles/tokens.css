@@ -1,0 +1,32 @@
+:root {
+  --roast: #5a3e2d;
+  --roast-deep: #2e1d13;
+  --espresso: #2a1a12;
+  --crema: #f3e7d3;
+  --crema-dim: #d9c8b0;
+  --crema-mute: #d1b58f;
+  --crema-line: rgb(243 231 211 / 0.28);
+  --paper: #f3e7d3;
+  --paper-ink: #2a1a12;
+  --paper-body: #3f2c20;
+  --paper-mute: #6b5542;
+  --paper-line: rgb(42 26 18 / 0.22);
+  --caramel: #e8a96e;
+  --burnt: #a85a1c;
+  --olive: #6b7247;
+  --cherry: #a6485a;
+  --tape: rgb(222 186 110 / 0.55);
+
+  --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --font-body: 'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
+
+  --text-0: clamp(1rem, 0.95rem + 0.2vw, 1.0625rem);
+  --text-1: clamp(1.15rem, 1rem + 0.5vw, 1.3rem);
+  --text-2: clamp(2.5rem, 1.6rem + 3vw, 4rem);
+  --text-3: clamp(3.5rem, 2rem + 6.5vw, 7rem);
+  --text-mono: 0.8125rem;
+
+  --gutter: clamp(1.25rem, 5vw, 4.5rem);
+  --measure: 80rem;
+}
