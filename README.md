@@ -25,6 +25,8 @@ Live: https://owennyo.com
 
 The site is a Cloudflare Worker that serves the built `dist/` folder, configured in `wrangler.jsonc`, with owennyo.com and www.owennyo.com as custom domains.
 
+Pushing to `main` deploys through `.github/workflows/cloudflare.yml`, which needs the `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` repository secrets. To deploy by hand:
+
     npm run build
     npx wrangler deploy
 
