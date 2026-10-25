@@ -34,7 +34,7 @@ export default function Menu() {
             <p className="eyebrow">03 / projects</p>
             <h2 className="section-title">today's menu</h2>
           </div>
-          <p className="menu__note mono">four things i've brewed</p>
+          <p className="menu__note mono">{projects.length} things i've brewed</p>
         </div>
         <ul className="board">
           {projects.map((p, i) => (
