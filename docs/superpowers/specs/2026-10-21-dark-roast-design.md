@@ -25,7 +25,7 @@ Audience is unchanged: peers and recruiters arriving from GitHub or LinkedIn.
 | Contact | "the counter's open" eyebrow, "say hello ↗" with hello in accent italic, blurb, pills: email me (filled, mailto owennyowy@gmail.com), github, linkedin, resume. Footer line "© 2026 owen · made with love and one too many flat whites" and "back to top ↑". |
 | Resume | `public/resume.pdf`, the file Owen supplied, published as is. |
 | Share image | Regenerate `public/og.png` from the new hero. |
-| Hosting | GitHub Pages via the existing Actions workflow. |
+| Hosting | Cloudflare Worker with static assets at owennyo.com, deployed with `wrangler deploy`. The old GitHub Pages URL redirects there. |
 
 ## Content owned by Owen (edit in `src/data/`)
 

@@ -2,7 +2,7 @@
 
 A one-page site with a coffee shop identity: hero with a polaroid, about tabs with a loyalty stamp card, work shifts, projects as menu tags, and a contact counter. React with Vite, plain CSS.
 
-Live: https://owennyo.github.io/Personal_Portfolio/
+Live: https://owennyo.com
 
 ## Develop
 
@@ -23,7 +23,12 @@ Live: https://owennyo.github.io/Personal_Portfolio/
 
 ## Deploy
 
-Pushing to `main` runs `.github/workflows/deploy.yml`, which builds the site and publishes it to GitHub Pages. The repository's Pages source must be set to GitHub Actions.
+The site is a Cloudflare Worker that serves the built `dist/` folder, configured in `wrangler.jsonc`, with owennyo.com and www.owennyo.com as custom domains.
+
+    npm run build
+    npx wrangler deploy
+
+The old GitHub Pages address, owennyo.github.io/Personal_Portfolio, now only redirects to owennyo.com. `.github/workflows/deploy.yml` publishes the redirect page from `github-pages-redirect/`.
 
 ## Design
 
