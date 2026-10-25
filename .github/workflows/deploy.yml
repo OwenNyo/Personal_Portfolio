@@ -1,8 +1,9 @@
-name: Deploy to GitHub Pages
+name: Publish GitHub Pages redirect
 
 on:
   push:
     branches: [main]
+    paths: [github-pages-redirect/**, .github/workflows/deploy.yml]
   workflow_dispatch:
 
 permissions:
@@ -15,15 +16,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
-      - uses: actions/setup-node@v5
-        with:
-          node-version: 22
-          cache: npm
-      - run: npm ci
-      - run: npm run build
+      # 404.html catches deep links like /Personal_Portfolio/resume.pdf.
+      - run: cp github-pages-redirect/index.html github-pages-redirect/404.html
       - uses: actions/upload-pages-artifact@v4
         with:
-          path: dist
+          path: github-pages-redirect
 
   deploy:
     needs: build
